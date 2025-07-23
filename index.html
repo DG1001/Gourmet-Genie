@@ -609,6 +609,11 @@
                 <label for="ingredients" class="form-label">Welche Zutaten haben Sie zu Hause?</label>
                 <textarea id="ingredients" class="form-textarea" placeholder="z.B. Lachs, Spinat, Sahne, Knoblauch, Zitrone..."></textarea>
             </div>
+            <div class="form-group">
+                <label for="instructions" class="form-label">Zusätzliche Wünsche (optional)</label>
+                <textarea id="instructions" class="form-textarea" placeholder="z.B. Vorspeise, französische Küche, vegetarisch, einfach, schnell..."></textarea>
+                <div class="form-hint">Spezifizieren Sie Ihre Wünsche: Gericht-Art, Küchenstil, Schwierigkeit, Diät-Präferenzen etc.</div>
+            </div>
             <button id="generateBtn" class="btn btn-primary">
                 <span id="generateBtnText">Rezepte generieren ✨</span>
             </button>
@@ -712,6 +717,7 @@
 
             async generateRecipes() {
                 const ingredients = document.getElementById('ingredients').value.trim();
+                const instructions = document.getElementById('instructions').value.trim();
                 
                 if (!this.apiKey) {
                     alert('❌ Kein API Key gefunden!\n\nBitte starten Sie die App mit einem API Key:\nihr-dateiname.html?apikey=sk-xxxxxxxxxx');
@@ -728,7 +734,7 @@
                 this.hideSection('recipeDetailSection');
 
                 try {
-                    const recipes = await this.callDeepSeekAPI(this.createRecipePrompt(ingredients));
+                    const recipes = await this.callDeepSeekAPI(this.createRecipePrompt(ingredients, instructions));
                     this.currentRecipes = recipes;
                     this.displayRecipes(recipes);
                 } catch (error) {
@@ -739,8 +745,10 @@
                 }
             }
 
-            createRecipePrompt(ingredients) {
-                return `Als erfahrener Gourmet-Koch sollst du 3 raffinierte, gehobene Rezepte basierend auf diesen Zutaten erstellen: ${ingredients}
+            createRecipePrompt(ingredients, instructions = '') {
+                const instructionText = instructions ? `\n\nZusätzliche Anforderungen: ${instructions}` : '';
+                
+                return `Als erfahrener Gourmet-Koch sollst du 3 raffinierte, gehobene Rezepte basierend auf diesen Zutaten erstellen: ${ingredients}${instructionText}
 
 Antworte ausschließlich mit einem gültigen JSON-Objekt in folgendem Format:
 
@@ -767,6 +775,7 @@ Antworte ausschließlich mit einem gültigen JSON-Objekt in folgendem Format:
 Wichtig: 
 - Kreiere nur gehobene, raffinierte Gerichte
 - Nutze die vorhandenen Zutaten maximal aus
+- Berücksichtige alle zusätzlichen Anforderungen falls angegeben
 - Gib nur gültiges JSON zurück, keine zusätzlichen Texte
 - Jedes Rezept sollte 4-8 Zubereitungsschritte haben`;
             }
