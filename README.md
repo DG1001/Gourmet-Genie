@@ -5,6 +5,7 @@ Eine elegante Web-App, die aus Ihren vorhandenen Zutaten raffinierte Gourmet-Rez
 ## ✨ Features
 
 - **Zutateneingabe**: Geben Sie Ihre verfügbaren Zutaten ein
+- **Optionale Wünsche**: Zusätzliche Anforderungen (Küchenstil, Schwierigkeit, Diät-Präferenzen)
 - **KI-generierte Rezepte**: 3 kreative Gourmet-Rezeptvorschläge powered by DeepSeek AI
 - **Detaillierte Anleitungen**: Schritt-für-Schritt Kochanweisungen mit Profi-Tipps
 - **Einkaufsliste**: Automatische Liste für fehlende Zutaten
@@ -57,9 +58,14 @@ Das Interface folgt Apples Designsprache mit:
 
 1. **API Key Setup**: Fügen Sie Ihren DeepSeek API Key als URL-Parameter hinzu
 2. **Zutaten eingeben**: Listen Sie Ihre verfügbaren Zutaten auf
-3. **Rezepte generieren**: Klicken Sie "Rezepte generieren"
-4. **Rezept auswählen**: Wählen Sie eines der 3 vorgeschlagenen Rezepte
-5. **Kochen**: Folgen Sie der detaillierten Anleitung
+3. **Wünsche spezifizieren (optional)**: Geben Sie zusätzliche Anforderungen ein wie:
+   - Küchenstil (z.B. "französische Küche", "italienisch")
+   - Schwierigkeit (z.B. "einfach", "schnell")
+   - Diät-Präferenzen (z.B. "vegetarisch", "vegan")
+   - Gang-Art (z.B. "Vorspeise", "Hauptgang", "Dessert")
+4. **Rezepte generieren**: Klicken Sie "Rezepte generieren"
+5. **Rezept auswählen**: Wählen Sie eines der 3 vorgeschlagenen Rezepte
+6. **Kochen**: Folgen Sie der detaillierten Anleitung
 
 ## 🔧 Entwicklung
 
